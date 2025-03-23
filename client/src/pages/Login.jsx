@@ -9,14 +9,16 @@ const Login = () => {
         const { name, value } = e.target
         setValues({ ...Values, [name]: value })
     }
-    const login = async (e) => {
+    const Login = async (e) => {
         e.preventDefault()
         try {
             const res = await axios.post("http://localhost:3000/api/v1/login", Values, {
                 withCredentials: true
             })
-            alert(res.data.success)
-            navigate('/login')
+            //alert(res.data.success)
+            //navigate('/login')
+            localStorage.setItem("userLoggedIn", 'yes')
+            navigate('/dashboard')
         } catch (error) {
             alert(error.response.data.error)
         }

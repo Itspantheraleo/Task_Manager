@@ -14,4 +14,6 @@ If you are developing a production application, we recommend using TypeScript an
 
 ## https://tailwindcss.com/docs/installation/using-vite
 # npmjs.com
+# npm i react=items
+# npm run dev
 
