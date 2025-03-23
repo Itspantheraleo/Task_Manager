@@ -12,7 +12,9 @@ const Login = () => {
     const login = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post("http://localhost:3000/api/v1/login", Values)
+            const res = await axios.post("http://localhost:3000/api/v1/login", Values, {
+                withCredentials: true
+            })
             alert(res.data.success)
             navigate('/login')
         } catch (error) {

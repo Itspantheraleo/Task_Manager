@@ -3,29 +3,29 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const taskScchema = new Schema({
-    title :{
+    title: {
         type: String,
         required: true,
     },
-    description:{
+    description: {
         type: String,
-        required:true
+        required: true
     },
-    priority:{
+    priority: {
         type: String,
-        required:True,
-        enum:['low','medium','high'],
-        default:'low',
+        required: true,
+        enum: ['low', 'medium', 'high'],
+        default: 'low',
 
     },
-    status:{
+    status: {
         type: String,
-        required:True,
-        enum:['yettostart','inprogress','completed'],
-        default:'yetttostart',
+        required: true,
+        enum: ['yettostart', 'inprogress', 'completed'],
+        default: 'yetttostart',
     }
 })
 
-module.exports=mongoose.model('Tast',taskScchema)
+module.exports = mongoose.model('Tast', taskScchema)
 
 
