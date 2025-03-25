@@ -68,5 +68,15 @@ const login = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
+    try {
+        res.clearCookie("TaskmanagerToken", {
+            httpOnly: true
+        })
+        res.json({ messege: "Logged Out" })
+    } catch (error) {
+        return res.status(404).json({ error: "Internal server Error" })
+    }
+}
 
-module.exports = { register, login } 
+module.exports = { register, login, logout } 
