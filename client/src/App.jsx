@@ -8,7 +8,7 @@ const App = () => {
   const navigate = useNavigate()
   useEffect(() => {
     if (localStorage.getItem("userLoggedIn")) {
-      Navigate("/dashboard")
+      navigate("/dashboard")
     }
     else {
       navigate('/login')
