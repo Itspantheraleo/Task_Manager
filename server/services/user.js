@@ -79,4 +79,31 @@ const logout = async (req, res) => {
     }
 }
 
-module.exports = { register, login, logout } 
+const userDetails = async (req, res) => {
+    try {
+        const { user } = req
+        const getDetails = await User.findById(used._id).populate('tasks').select('-password')
+        if (getDetails) {
+            const allTasks = getDetails.tasks
+            let yetToStart = []
+            let inProgress = []
+            let completed = []
+            allTasks.map((item) => {
+                if (item.status === "yetToStart") {
+                    yetToStart.push(item)
+                } else if (item.status === 'inProgress') {
+                    inProgress.push(item)
+                } else {
+                    completed.push(item)
+                }
+            })
+            return res.status(200).json({ success: 'success', tasks: [{ yestToStart }, { inProgress }, { completed }] })
+
+        }
+
+    } catch (error) {
+        return res.status(404).json({ error: "Internal server Error" })
+    }
+}
+
+module.exports = { register, login, logout, userDetails } 

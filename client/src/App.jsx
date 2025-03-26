@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
 import Register from "./pages/Register";
-import Login from './pages/Login'
+import Login from './pages/login'
 import Dashboard from "./pages/Dashboard"
 
 const App = () => {

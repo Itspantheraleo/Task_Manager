@@ -2,7 +2,7 @@ const task = require("../models/tasks")
 const addTask = async (req, res) => {
     try {
         const { title, description, priority, status } = req.body
-        const user = req.user
+        const { user } = req
         if (!title || !description) {
             return res.status(400).json({ error: "All Fields are required" })
         }
@@ -52,7 +52,6 @@ const getTask = async (req, res) => {
     try {
         const { id } = req.params
         const taskDetails = await task.findById(id)
-        await task.findByIdAndUpdate(id, { title, description, priority, status })
         return res.status(200).json({ taskDetails })
     } catch (error) {
         return res.status(404).json({ error: "Internal server error" })
