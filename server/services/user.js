@@ -43,26 +43,22 @@ const login = async (req, res) => {
             return res.status(400).json({ error: 'All Fields Are Required!' })
         }
         const checkUser = await User.findOne({ email })
-        if (checkUser) {
-            bcrypt.compare(password, checkUser.password, (err, data) => {
-                if (data) {
-                    const token = jwt.sign({ id: checkUser._id, email }, process.env.JWT_SECRET, { expiresIn: '30d' }
-                    )
-                    res.cookie('TaskmanagerToken', token, {
-                        httpOnly: true,
-                        maxAge: 30 * 24 * 60 * 60 * 1000,
-                        secure: process.env.NODE_ENV === 'Production',
-                        sameSite: 'None',
-
-
-                    })
-                    return res.status(200).json({ success: "Login Successfully" })
-
-                } else {
-                    return res.status(400).json({ error: 'Invalid Credentials' })
-                }
-            })
+        if (!checkUser) {
+            return res.status(400).json({ error: 'Invalid Credentials' }) // Missing response fixed here
         }
+        const isMatch = await bcrypt.compare(password, checkUser.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Invalid Credentials' })
+        }
+
+        const token = jwt.sign({ id: checkUser._id, email }, process.env.JWT_SECRET, { expiresIn: '30d' })
+        res.cookie('TaskmanagerToken', token, {
+            httpOnly: true,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'None',
+        })
+        return res.status(200).json({ success: "Login Successfully" })
     } catch (error) {
         return res.status(400).json({ error: 'Internal Server error' })
     }
@@ -73,7 +69,7 @@ const logout = async (req, res) => {
         res.clearCookie("TaskmanagerToken", {
             httpOnly: true
         })
-        res.json({ messege: "Logged Out" })
+        res.json({ message: "Logged Out" })
     } catch (error) {
         return res.status(404).json({ error: "Internal server Error" })
     }
@@ -82,7 +78,7 @@ const logout = async (req, res) => {
 const userDetails = async (req, res) => {
     try {
         const { user } = req
-        const getDetails = await User.findById(used._id).populate('tasks').select('-password')
+        const getDetails = await User.findById(user._id).populate('tasks').select('-password')
         if (getDetails) {
             const allTasks = getDetails.tasks
             let yetToStart = []
@@ -97,7 +93,7 @@ const userDetails = async (req, res) => {
                     completed.push(item)
                 }
             })
-            return res.status(200).json({ success: 'success', tasks: [{ yestToStart }, { inProgress }, { completed }] })
+            return res.status(200).json({ success: 'success', tasks: [{ yetToStart }, { inProgress }, { completed }] })
 
         }
 

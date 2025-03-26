@@ -17,10 +17,10 @@ const AddTask = ({ setAddTaskDiv }) => {
     const addTask = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/api/v1/addTask", Values, { withCredentials: true });
+            const res = await axios.post("http://localhost:3000/api/v1/addTask", Values, { withCredentials: true });
             alert("Task added successfully!");
         } catch (error) {
-            alert(error.response?.data?.error || "Something went wrong!");
+            alert(error.response.data.error);
         }
     };
 
@@ -73,7 +73,7 @@ const AddTask = ({ setAddTaskDiv }) => {
                         className="w-full bg-blue-800 py-2 text-white hover:bg-blue-700 transition-all duration-300 rounded"
                         onClick={addTask}
                     >
-                        Add Task
+                        Add Task{" "}
                     </button>
                     <button
                         className="w-full border border-black bg-blue-800 py-2 hover:bg-zinc-100 transition-all duration-300 rounded"

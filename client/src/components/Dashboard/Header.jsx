@@ -10,7 +10,7 @@ const Header = ({ setAddTaskDiv }) => {
     const logout = async () => {
         try {
             const res = await axios.post("http://localhost:3000/api/v1/logout", {}, { withCredentials: true })
-            alert(res.data.messege)
+            alert(res.data.message)
             localStorage.clear("userLoggedIn")
             navigate('/login')
         } catch (error) {
