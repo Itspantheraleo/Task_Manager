@@ -1,11 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Dashboard/Header'
 import AddTask from '../components/Dashboard/AddTask'
+import StackTitle from '../components/Dashboard/StackTitle'
+import YetToStart from '../components/Dashboard/YetToStart'
+import InProgress from '../components/Dashboard/InProgress'
+import Completed from '../components/Dashboard/Completed'
+import axios from 'axios'
 
 
 const Dashboard = () => {
+
+
     const [AddTaskDiv, setAddTaskDiv] = useState('hidden')
-    console.log("Dashboard: setAddTaskDiv function", setAddTaskDiv);
+    const [Tasks, setTasks] = useState()
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const res = await axios.get(
+                    "http://localhost:3000/api/v1/userDetails"
+                    , {
+                        withCredentials: true
+                    })
+                setTasks(res.data.tasks)
+            } catch (error) {
+
+            }
+        }
+        fetchUserDetails()
+    }, [])
+    //console.log(Tasks)
+
     return (
         <div className='w-full relative'>
             <div className="bg-white">
@@ -13,21 +37,23 @@ const Dashboard = () => {
             </div>
             <div className='px-12 py-4 flex gap-12 bg0zinc-100 min-h[89vh] max-h-auto'>
                 <div className='w-1/3 '>
-                    <div className='border-b pb-2'>
-                        <h1 className='font-semibold text-zinc-800 text-center'>Yet To Start</h1>
+                    <StackTitle title={"Yet To Start"} />
+                    <div className='pt-2 '>
+                        {Tasks && <YetToStart task={Tasks[0].YetToStart} />}
                     </div>
                 </div>
                 <div className='w-1/3 '>
-                    <div className='border-b pb-2'>
-                        <h1 className='font-semibold text-zinc-800 text-center'>In Progress</h1>
+                    <StackTitle title={"InProgress"} />
+                    <div className='pt-2 '>
+                        <InProgress />
                     </div>
                 </div>
                 <div className='w-1/3 '>
-                    <div className='border-b pb-2'>
-                        <h1 className='font-semibold text-zinc-800 text-center'>Completed</h1>
+                    <StackTitle title={"Completed"} />
+                    <div className='pt-2 '>
+                        <Completed />
                     </div>
                 </div>
-
             </div>
             {/*----------------------------------------------*/}
 

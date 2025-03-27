@@ -26,6 +26,6 @@ const taskScchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Tast', taskScchema)
+module.exports = mongoose.model('tasks', taskScchema)
 
 

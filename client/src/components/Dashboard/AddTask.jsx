@@ -76,7 +76,7 @@ const AddTask = ({ setAddTaskDiv }) => {
                         Add Task{" "}
                     </button>
                     <button
-                        className="w-full border border-black bg-blue-800 py-2 hover:bg-zinc-100 transition-all duration-300 rounded"
+                        className="w-full border border-black py-2 hover:bg-zinc-100 transition-all duration-300 rounded"
                         onClick={() => setAddTaskDiv("hidden")}
                     >
                         Cancel
