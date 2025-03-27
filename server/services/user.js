@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+
 const jwt = require('jsonwebtoken')
 
 const register = async (req, res) => {
@@ -51,7 +52,7 @@ const login = async (req, res) => {
             return res.status(400).json({ error: 'Invalid Credentials' })
         }
 
-        const token = jwt.sign({ id: checkUser._id, email }, process.env.JWT_SECRET, { expiresIn: '30d' })
+        const token = jwt.sign({ id: checkUser._id, email: checkUser.email }, process.env.JWT_SECRET, { expiresIn: '30d' })
         res.cookie('TaskmanagerToken', token, {
             httpOnly: true,
             maxAge: 30 * 24 * 60 * 60 * 1000,

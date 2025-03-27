@@ -18,6 +18,7 @@ const Login = () => {
                 withCredentials: true
             })
             localStorage.setItem("userLoggedIn", 'yes')
+            alert(res.data.success)
             navigate('/dashboard')
         } catch (error) {
             alert(error.response?.data?.error || "Login failed")
@@ -46,7 +47,7 @@ const Login = () => {
                         onChange={change} />
 
                     {/* Fixed the onClick issue */}
-                    <button type="submit" className='bg-blue-800 font-semibold py-2 rounded text-white hover:bg-blue-700 transition-all duration-300'>Login</button>
+                    <button type="submit" className='bg-blue-800 font-semibold py-2 rounded text-white hover:bg-blue-700 transition-all duration-300' onClick={login}>Login</button>
 
                     <p className='text-center font-semibold text-gray-900 '>
                         Don't have an account? <Link to='/register' className="text-blue-600">Sign Up</Link>
