@@ -45,13 +45,14 @@ const Dashboard = () => {
                 <div className='w-1/3 '>
                     <StackTitle title={"InProgress"} />
                     <div className='pt-2 '>
-                        <InProgress />
+                        {Tasks && <InProgress task={Tasks[1].YetToStart} />}
+
                     </div>
                 </div>
                 <div className='w-1/3 '>
                     <StackTitle title={"Completed"} />
                     <div className='pt-2 '>
-                        <Completed />
+                        {Tasks && <Completed task={Tasks[2].YetToStart} />}
                     </div>
                 </div>
             </div>

@@ -22,10 +22,10 @@ const taskScchema = new Schema({
         type: String,
         required: true,
         enum: ['yettostart', 'inprogress', 'completed'],
-        default: 'yetttostart',
+        default: 'yettostart',
     }
 })
 
-module.exports = mongoose.model('tasks', taskScchema)
+module.exports = mongoose.model('Task', taskScchema)
 
 

@@ -20,6 +20,7 @@ const AddTask = ({ setAddTaskDiv }) => {
             const res = await axios.post("http://localhost:3000/api/v1/addTask", Values, { withCredentials: true });
             alert("Task added successfully!");
         } catch (error) {
+            console.error(error)
             alert(error.response.data.error);
         }
     };

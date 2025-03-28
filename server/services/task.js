@@ -20,6 +20,7 @@ const addTask = async (req, res) => {
         return res.status(200).json({ success: "Task Added" })
 
     } catch (error) {
+        console.error(error)
         return res.status(404).json({ error: "Internal server error" })
     }
 }

@@ -1,9 +1,11 @@
 import React from 'react'
-
-const InProgress = () => {
+import TaskCard from './TaskCard'
+const InProgress = ({ task }) => {
     return (
-        <div>InProgress</div>
-    )
+        <div className='flex flex-col gap-2'>
+            {task && task.map((items, i) => <TaskCard key={i} data={items} />)}
+
+        </div>)
 }
 
 export default InProgress
