@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken")
 const User = require("../models/user")
 
 const authMiddleware = async (req, res, next) => {
-    console.log("Cookies: ", req.cookies); // ✅ Debugging
+    //console.log("Cookies: ", req.cookies); // ✅ Debugging
 
-    console.log(req.cookies.csrftoken)
+    //console.log(req.cookies.csrftoken)
 
     const token = req.cookies.TaskmanagerToken
 

@@ -6,7 +6,7 @@ const AddTask = ({ setAddTaskDiv }) => {
         title: "",
         description: "",
         priority: "low",
-        status: "yetToStart",
+        status: "YetToStart",
     });
 
     const change = (e) => {
@@ -18,6 +18,7 @@ const AddTask = ({ setAddTaskDiv }) => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:3000/api/v1/addTask", Values, { withCredentials: true });
+
             alert("Task added successfully!");
         } catch (error) {
             console.error(error)

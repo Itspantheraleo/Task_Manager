@@ -39,20 +39,20 @@ const Dashboard = () => {
                 <div className='w-1/3 '>
                     <StackTitle title={"Yet To Start"} />
                     <div className='pt-2 '>
-                        {Tasks && <YetToStart task={Tasks[0].YetToStart} />}
+                        {Tasks && <YetToStart task={Tasks[0].yetToStart} />}
                     </div>
                 </div>
                 <div className='w-1/3 '>
                     <StackTitle title={"InProgress"} />
                     <div className='pt-2 '>
-                        {Tasks && <InProgress task={Tasks[1].YetToStart} />}
+                        {Tasks && <InProgress task={Tasks[1].yetToStart} />}
 
                     </div>
                 </div>
                 <div className='w-1/3 '>
                     <StackTitle title={"Completed"} />
                     <div className='pt-2 '>
-                        {Tasks && <Completed task={Tasks[2].YetToStart} />}
+                        {Tasks && <Completed task={Tasks[2].yetToStart} />}
                     </div>
                 </div>
             </div>

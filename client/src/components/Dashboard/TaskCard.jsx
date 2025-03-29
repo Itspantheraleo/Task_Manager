@@ -11,7 +11,7 @@ const TaskCard = ({ data }) => {
             </div>
             <hr className='my-2' />
             <p className='text-sm text-zinc-500 text-start'>
-                {items.description}
+                {data.description}
             </p>
         </button>
     )
