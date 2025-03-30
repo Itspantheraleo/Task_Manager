@@ -21,8 +21,8 @@ const taskScchema = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['YetToStart', 'InProgress', 'Completed'],
-        default: 'YetToStart',
+        enum: ['yetToStart', 'inProgress', 'completed'],
+        default: 'yetToStart',
     }
 })
 

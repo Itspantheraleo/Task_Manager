@@ -15,7 +15,7 @@ const addTask = async (req, res) => {
 
         const newTask = new task({ title, description, priority, status })
         await newTask.save()
-        user.task.push(newTask._id)
+        user.tasks.push(newTask._id)
         await user.save()
         return res.status(200).json({ success: "Task Added" })
 

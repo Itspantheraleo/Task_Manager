@@ -6,7 +6,7 @@ const AddTask = ({ setAddTaskDiv }) => {
         title: "",
         description: "",
         priority: "low",
-        status: "YetToStart",
+        status: "yetToStart",
     });
 
     const change = (e) => {
