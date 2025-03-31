@@ -3,7 +3,7 @@ import React from 'react'
 const TaskCard = ({ data }) => {
     const showEditDiv = (e, id) => {
         e.preventDefault()
-        window.sessionStorage.setItem('editTaskId', id)
+        window.sessionStorage.setItem('EditTaskId', id)
         window.location.reload()
 
     }

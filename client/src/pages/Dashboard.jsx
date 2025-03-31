@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [AddTaskDiv, setAddTaskDiv] = useState('hidden');
     const [Tasks, setTasks] = useState([]);
     const [EditTaskDiv, setEditTaskDiv] = useState('hidden')
-    const [EditTaskId, setEditTaskId] = useState('hidden')
+    const [EditTaskId, setEditTaskId] = useState()
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -32,11 +32,11 @@ const Dashboard = () => {
         };
 
         fetchUserDetails();
-        if (window.sessionStorage.getItem('editTaskId')) {
+        if (window.sessionStorage.getItem('EditTaskId')) {
             setEditTaskDiv('block')
             setEditTaskId(window.sessionStorage.getItem('editTaskId'))
         }
-    }, [Tasks]); // ✅ Fetch data only once
+    }, [AddTaskDiv]); // ✅ Fetch data only once
 
     return (
         <div className="w-full relative">
