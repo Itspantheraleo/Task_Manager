@@ -6,17 +6,20 @@ import YetToStart from '../components/Dashboard/YetToStart';
 import InProgress from '../components/Dashboard/InProgress';
 import Completed from '../components/Dashboard/Completed';
 import axios from 'axios';
+import EditTask from '../components/Dashboard/EditTask';
 
 const Dashboard = () => {
     const [AddTaskDiv, setAddTaskDiv] = useState('hidden');
     const [Tasks, setTasks] = useState([]);
+    const [EditTaskDiv, setEditTaskDiv] = useState('hidden')
+    const [EditTaskId, setEditTaskId] = useState('hidden')
 
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
                 const res = await axios.get("http://localhost:3000/api/v1/userDetails", { withCredentials: true });
 
-                console.log("API Response:", res.data); // ✅ Debugging API Response
+                //console.log("API Response:", res.data); // ✅ Debugging API Response
 
                 if (res.data && Array.isArray(res.data.tasks)) {
                     setTasks(res.data.tasks);
@@ -29,7 +32,11 @@ const Dashboard = () => {
         };
 
         fetchUserDetails();
-    }, []); // ✅ Fetch data only once
+        if (window.sessionStorage.getItem('editTaskId')) {
+            setEditTaskDiv('block')
+            setEditTaskId(window.sessionStorage.getItem('editTaskId'))
+        }
+    }, [Tasks]); // ✅ Fetch data only once
 
     return (
         <div className="w-full relative">
@@ -61,6 +68,10 @@ const Dashboard = () => {
             <div className={`w-full ${AddTaskDiv} h-screen bg-zinc-800 opacity-70`}></div>
             <div className={`w-full ${AddTaskDiv} h-screen fixed top-0 left-0 flex items-center justify-center`}>
                 <AddTask setAddTaskDiv={setAddTaskDiv} />
+            </div>
+            <div className={`w-full ${EditTaskDiv} h-screen bg-zinc-800 opacity-70`}></div>
+            <div className={`w-full ${EditTaskDiv} h-screen fixed top-0 left-0 flex items-center justify-center`}>
+                <EditTask EditTaskId={EditTaskId} setEditTaskDiv={setEditTaskDiv} />
             </div>
         </div>
     );
